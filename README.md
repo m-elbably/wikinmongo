@@ -57,7 +57,7 @@ Arguments:
 ````
 db:   MongoDB database
 dump: Wikipedia dump XML file (uncomressed)
-drop: Drop pages collection (if exists) before isterting new documents
+drop: Drop pages collection (if exists) before insterting new documents
 ````
 Example:
 `node app.js 'mongodb://localhost:27017/wiki' '/media/Data/enwiki.xml' drop`
