@@ -1,4 +1,4 @@
-WikiMogo 0.1.0
+WikinMogo 0.1.0
 ==============
 
 Overview
