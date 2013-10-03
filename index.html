@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Wikinmongo by blueqnx</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Wikinmongo</h1>
+        <p class="header">Simple node.js script to import Wikipedia XML dump into MongoDB database.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/blueqnx/wikinmongo/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/blueqnx/wikinmongo/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/blueqnx/wikinmongo">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/blueqnx">blueqnx</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a name="wikinmogo-010" class="anchor" href="#wikinmogo-010"><span class="octicon octicon-link"></span></a>WikinMogo 0.1.0</h1>
+
+<h2>
+<a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h2>
+
+<p>This is just a simple node.js script to import Wikipedia XML dump into MongoDB database.</p>
+
+<h2>
+<a name="environment" class="anchor" href="#environment"><span class="octicon octicon-link"></span></a>Environment</h2>
+
+<ul>
+<li>GNU/Linux, Windows, Mac</li>
+<li>Node.js <code>0.10.18</code> +</li>
+<li>Node.js Modules
+
+<ul>
+<li>xml-object-stream : <code>0.2.0</code> +</li>
+<li>mongodb: <code>1.3.19</code> +</li>
+<li>cli-color: <code>0.2.3</code> + (can be remove and use only stdout)</li>
+</ul>
+</li>
+<li>MongoDB <code>2.2</code> +</li>
+</ul><h2>
+<a name="data-source" class="anchor" href="#data-source"><span class="octicon octicon-link"></span></a>Data Source</h2>
+
+<p>Wikipedia XML dump file (uncompressed)<br><a href="http://dumps.wikimedia.org">http://dumps.wikimedia.org</a></p>
+
+<h2>
+<a name="page-document-structure" class="anchor" href="#page-document-structure"><span class="octicon octicon-link"></span></a>Page Document Structure</h2>
+
+<div class="highlight highlight-js"><pre><span class="p">{</span>
+    <span class="nx">title</span><span class="o">:</span> <span class="nx">string</span><span class="p">,</span>
+    <span class="nx">ns</span><span class="o">:</span> <span class="nx">string</span><span class="p">,</span>
+    <span class="nx">id</span><span class="o">:</span> <span class="nx">number</span><span class="p">,</span>
+    <span class="nx">revision</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">id</span><span class="o">:</span> <span class="nx">number</span><span class="p">,</span>
+        <span class="nx">parentid</span><span class="o">:</span> <span class="nx">number</span><span class="p">,</span>
+        <span class="nx">timestamp</span><span class="o">:</span> <span class="nx">date</span><span class="p">,</span>
+        <span class="nx">contributor</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">username</span><span class="o">:</span> <span class="nx">string</span><span class="p">,</span>
+            <span class="nx">id</span><span class="o">:</span> <span class="nx">number</span><span class="p">,</span>
+            <span class="nx">ip</span><span class="o">:</span> <span class="nx">string</span>
+        <span class="p">},</span>
+        <span class="nx">comment</span><span class="o">:</span> <span class="nx">string</span><span class="p">,</span>
+        <span class="nx">text</span><span class="o">:</span> <span class="nx">string</span><span class="p">,</span>
+        <span class="nx">sha1</span><span class="o">:</span> <span class="nx">string</span><span class="p">,</span>
+        <span class="nx">model</span><span class="o">:</span> <span class="nx">string</span><span class="p">,</span>
+        <span class="nx">format</span><span class="o">:</span> <span class="nx">string</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>node app.js <code>db</code> <code>dump</code> <code>drop</code></p>
+
+<p>Arguments:</p>
+
+<pre><code>db:   MongoDB database
+dump: Wikipedia dump XML file (uncomressed)
+drop: Drop pages collection (if exists) before insterting new documents
+</code></pre>
+
+<p>Example:
+<code>node app.js 'mongodb://localhost:27017/wiki' '/media/Data/enwiki.xml' drop</code></p>
+
+<h2>
+<a name="notes" class="anchor" href="#notes"><span class="octicon octicon-link"></span></a>Notes</h2>
+
+<ul>
+<li>Importing full Wikipedia dump will take a while (several hours, 3:30 to import 2012 dump on quad core machine)</li>
+<li>Importing full Wikipedia dump will require upto 40 GB of storage space</li>
+</ul><h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>This project is BSD (2 clause) licensed.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
