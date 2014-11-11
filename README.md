@@ -68,6 +68,7 @@ Notes
 * Importing full Wikipedia dump will take a while (several hours, 3:30 to import 2012 dump on quad core machine)
 * Importing full Wikipedia dump will require upto 40 GB of storage space
 * index.coffee requires compile with the following coffee -c index.coffee before use.
+
 License
 -------
 
